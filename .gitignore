@@ -1,5 +1,9 @@
 *.class
 *.log
+.classpath
+.project
+.cache
+.settings/
 
 # sbt specific
 .cache/
