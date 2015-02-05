@@ -4,6 +4,7 @@
 .project
 .cache
 .settings/
+bin/
 
 # sbt specific
 .cache/
