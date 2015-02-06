@@ -42,7 +42,7 @@ object FileUtilities {
 
 	def sameSize(p1: Path, p2: Path): Boolean = {
 
-		true
+		size(p1) == size(p2)
 	}
 
 	def md5Bytes(path: Path): Array[Byte] = {

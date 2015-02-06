@@ -30,4 +30,19 @@ class FindDuplicatesTest extends FlatSpec with Matchers {
 		val dups = findDuplicates(files)
 		
 	}
+	"md5 of two equal files" should "be the same" in {
+		
+		val checksum1 = md5(Paths.get("src/test/resources/files-test/dirA/fileA1"))
+		val checksum2 = md5(Paths.get("src/test/resources/files-test/dirA/fileA2"))
+
+		checksum1 should equal (checksum2)
+	}
+	
+	"md5 of two different files" should "be different" in {
+		
+		val checksum1 = md5(Paths.get("src/test/resources/files-test/dirA/fileA1"))
+		val checksum2 = md5(Paths.get("src/test/resources/files-test/dirB/fileB1"))
+
+		checksum1 should not equal (checksum2)
+	}
 }
