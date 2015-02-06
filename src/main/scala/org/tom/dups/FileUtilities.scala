@@ -6,6 +6,8 @@ import java.nio.file.Files._
 import java.nio.file.Path
 import scala.collection.JavaConversions._
 import scala.collection.mutable.Map
+import java.nio.file.Files
+import java.util.function.Predicate
 
 object FileUtilities {
 
@@ -71,5 +73,18 @@ object FileUtilities {
 		}
 
 		map.filter {pair => pair._2.size > 1}
+	}
+	
+	def findEmptyDirs(path: Path, callback: () => Unit) : List[Path] = {
+		
+		val emptyDirs = Files.walk(path).filter(new Predicate[Path] {
+			
+			def test(p: Path): Boolean = {
+				
+				Files.isDirectory(p) && Files.list(p).count() == 0
+			}
+		})
+
+		List(emptyDirs.toArray(): _*).map(x => x.asInstanceOf[Path])
 	}
 }
